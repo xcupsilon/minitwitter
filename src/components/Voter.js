@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
  
 const Voter = () => {
-  const [voteCount, changeVoteCount] = useState('')
+  const [voteCount, setVoteCount] = useState(0)
 
-  useEffect(() => {
-    
-  })
-
-  return(
-    <div>
-      Voter
+  return (
+    <div class="flex justify-center items-center h-screen">
+      <button onClick={() => setVoteCount(voteCount + 1)}>
+        &lt;
+      </button>
+      <span>{voteCount}</span>
+      <button onClick={() => setVoteCount(voteCount - 1)}>
+        &gt;
+      </button>
     </div>
   )
 }

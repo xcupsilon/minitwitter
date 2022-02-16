@@ -1,5 +1,4 @@
 import Input from './Input'
-import Submit from './Submit'
 
 const Post = () => {
   return (
