@@ -4,15 +4,15 @@ const Voter = () => {
   const [voteCount, setVoteCount] = useState(0)
 
   return (
-    <div class="flex justify-center items-center h-screen">
-      <button onClick={() => setVoteCount(voteCount + 1)}>
-        &lt;
+    <span className="float-right w-5">
+      <button className="block" onClick={() => setVoteCount(voteCount + 1)}>
+      🔺
       </button>
-      <span>{voteCount}</span>
-      <button onClick={() => setVoteCount(voteCount - 1)}>
-        &gt;
+      <div className='ml-1 mr-1'>{voteCount}</div>
+      <button className="block" onClick={() => setVoteCount(voteCount - 1)}>
+      🔻
       </button>
-    </div>
+    </span>
   )
 }
 
