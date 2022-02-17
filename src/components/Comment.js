@@ -1,26 +1,36 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Input from './Input'
 import Voter from './Voter'
 
-const Comment = ({name, post}) => {
+const Comment = ({name, post, depth}) => {
   const [replies, setReplies] = useState([])
   const [enableReply, setEnableReply] = useState(false)
 
   const addReply = (reply, index) => {
     const { name, post } = reply
-    return <Comment name={name} post={post} key={index}/>
+    return <Comment name={name} post={post} depth={depth + 1} key={index}/>
   }
 
   const Reply = () => {
+    if (depth > 1) {
+      setEnableReply(false)
+    }
     if (enableReply) {
       return (
-        <div className='w-full h-full p-3 shadow-md'>
-          <Input comments={replies} setComment={setReplies}/>
-        </div>
+        <>
+          <div className='mt-1.5'>
+          <button onClick={() => setEnableReply(!enableReply)} className='bg-transparent hover:bg-gray-50 rounded-md text-gray-800 font-normal py-1 w-12 text-xs'>&gt; Reply</button>
+          </div>
+          <div className='w-full h-full p-3 shadow-md'>
+            <Input comments={replies} setComment={setReplies}/>
+          </div>
+        </>
       ) 
     } else {
       return (
-        <></>
+          <div className='mt-1.5'>
+          <button onClick={() => setEnableReply(!enableReply)} className='bg-transparent hover:bg-gray-50 rounded-md text-gray-800 font-normal py-1 w-12 text-xs'>&gt; Reply</button>
+          </div>
       )
     }
   }
@@ -40,10 +50,6 @@ const Comment = ({name, post}) => {
         
         <div>
           {replies.map((reply, index)=> addReply(reply, index))}
-        </div>
-
-        <div className='mt-1.5'>
-          <button onClick={() => setEnableReply(!enableReply)} className='bg-transparent hover:bg-gray-50 rounded-md text-gray-800 font-normal py-1 w-12 text-xs'>&gt; Reply</button>
         </div>
 
         <Reply />
