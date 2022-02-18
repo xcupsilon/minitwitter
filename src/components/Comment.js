@@ -17,21 +17,29 @@ const Comment = ({name, post, depth}) => {
     }
     if (enableReply) {
       return (
-        <>
-          <div className='mt-1.5'>
-          <button onClick={() => setEnableReply(!enableReply)} className='bg-transparent hover:bg-gray-50 rounded-md text-gray-800 font-normal py-1 w-12 text-xs'>&gt; Reply</button>
-          </div>
-          <div className='w-full h-full p-3 shadow-md'>
-            <Input comments={replies} setComment={setReplies}/>
-          </div>
-        </>
-      ) 
-    } else {
-      return (
-          <div className='mt-1.5'>
-          <button onClick={() => setEnableReply(!enableReply)} className='bg-transparent hover:bg-gray-50 rounded-md text-gray-800 font-normal py-1 w-12 text-xs'>&gt; Reply</button>
-          </div>
+        <div className='w-full h-full p-3 shadow-md'>
+          <Input comments={replies} setComment={setReplies}/>
+        </div>
       )
+    } else {
+      return <></>
+    }
+  }
+
+  const handleClick = e => {
+    e.preventDefault()
+    setEnableReply(!enableReply)
+  }
+
+  const ReplyButton = () => {
+    if (depth < 2) {
+      return (
+        <div className='mt-1.5'>
+          <button onClick={(e) => handleClick(e)} className='bg-transparent hover:bg-gray-50 rounded-md text-gray-800 font-normal py-1 w-12 text-xs'>&gt; Reply</button>
+        </div>
+      )
+    } else {
+      return <></>
     }
   }
 
@@ -53,6 +61,7 @@ const Comment = ({name, post, depth}) => {
         </div>
 
         <Reply />
+        <ReplyButton />
       </div>
     </>
   )

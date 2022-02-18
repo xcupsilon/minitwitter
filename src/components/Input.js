@@ -8,14 +8,19 @@ const Input = ({comments, setComment}) => {
     return name && post
   }
 
+  const handleClick = e => {
+    e.preventDefault()
+    setComment([...comments, {name, post}])
+  }
+
   const SubmitButton = () => {
     if (isValid()) {
       return (
-        <form className='flow-root' onSubmit={() => setComment([...comments, {name, post}])}>
-          <button className='bg-purple-500 hover:bg-purple-700 text-white font-normal h-7 py-1 px-3 text-xs rounded float-right'>
+        <div className='flow-root'>
+          <button type='button' onClick={(e) => handleClick(e)} className='bg-purple-500 hover:bg-purple-700 text-white font-normal h-7 py-1 px-3 text-xs rounded float-right'>
             Submit
           </button>
-        </form>
+        </div>
       )
     } else {
       return (
@@ -25,16 +30,16 @@ const Input = ({comments, setComment}) => {
           </button>
         </div>
       )
-    } 
+    }
   }
 
   return(
     <>
       <div className='mb-4 mt-3'>
-        <input onChange={(e) => setName(e.target.value)} className='shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 text-xs leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200' id='name' type='text' placeholder='Name...'></input>
+        <input onChange={(e) => setName(e.target.value)} className='shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200' id='name' type='text' placeholder='Name...'></input>
       </div>
       <div>
-        <input onChange={(e) => setPost(e.target.value)} className='shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 text-xs mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200' id='post' type='text' placeholder='Write a new post...'></input>
+        <input onChange={(e) => setPost(e.target.value)} className='shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 text-sm mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200' id='post' type='text' placeholder='Write a new post...'></input>
       </div>
       <SubmitButton />
     </>
