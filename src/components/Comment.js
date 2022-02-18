@@ -18,7 +18,7 @@ const Comment = ({name, post, depth}) => {
     if (enableReply) {
       return (
         <div className='w-full h-full p-3 shadow-md'>
-          <Input comments={replies} setComment={setReplies}/>
+          <Input comments={replies} setComment={setReplies} setEnableReply={setEnableReply}/>
         </div>
       )
     } else {

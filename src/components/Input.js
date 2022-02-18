@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Input = ({comments, setComment}) => {
+const Input = ({comments, setComment, setEnableReply}) => {
   const [name, setName] = useState('')
   const [post, setPost] = useState('')
 
@@ -11,6 +11,7 @@ const Input = ({comments, setComment}) => {
   const handleClick = e => {
     e.preventDefault()
     setComment([...comments, {name, post}])
+    setEnableReply(false)
   }
 
   const SubmitButton = () => {
