@@ -7,7 +7,7 @@ const Comment = ({ name, post, depth }) => {
   const [enableReply, setEnableReply] = useState(false)
 
   const addReply = (reply, index) => {
-    const { author, content } = reply
+    const { name: author, post: content } = reply
     return <Comment name={author} post={content} depth={depth + 1} key={index} />
   }
 
